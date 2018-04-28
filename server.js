@@ -32,13 +32,16 @@ const authCheckMiddleware = require('./src/server/middleware/auth-check');
 app.use('/app', authCheckMiddleware);
 
 // ROUTES
-// --- serve FRONT-END ---
-app.use('/', express.static('dist'));
 // --- serve BACK-END ---
 const authRoutes = require('./src/server/routes/auth');
 const apiRoutes = require('./src/server/routes/api');
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
+// --- serve FRONT-END ---
+app.use('/assets', express.static('dist/assets'));
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'))
+});
 
 // LAUNCH
 app.listen(config.port);
