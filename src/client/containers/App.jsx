@@ -7,7 +7,6 @@ import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import Auth from '../utils/auth';
 
-
 class App extends React.Component {
     render() {
         return (

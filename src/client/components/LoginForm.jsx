@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import Card from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
-
 
 const LoginForm = ({
     onSubmit,
@@ -13,39 +13,46 @@ const LoginForm = ({
     successMessage,
     user
 }) => (
-    <Card className="container">
+    <Card className="form">
         <form action="/" onSubmit={onSubmit}>
             <h2 className="card-heading">Login</h2>
 
             {successMessage && <p className="success-message">{successMessage}</p>}
-            {errors.summary && <p className="error-message">{errors.summary}</p>}
+            <p className="error-message">{errors.summary}</p>
 
             <div className="field-line">
                 <TextField
-                    floatingLabelText="Email"
+                    error={errors.summary ? true : false}
+                    fullWidth
                     name="email"
-                    errorText={errors.email}
-                    onChange={onChange}
+                    placeholder="Email"
                     value={user.email}
+                    label={errors.email} // ERROR LABEL
+                    onChange={onChange}
                 />
             </div>
 
             <div className="field-line">
                 <TextField
-                    floatingLabelText="Password"
+                    error={errors.summary ? true : false}
+                    fullWidth
                     type="password"
                     name="password"
-                    onChange={onChange}
-                    errorText={errors.password}
+                    placeholder="Password"
                     value={user.password}
+                    label={errors.password}  // ERROR LABEL
+                    onChange={onChange}
+
                 />
             </div>
 
             <div className="button-line">
-                <RaisedButton type="submit" label="Log in" primary />
+                <Button ype="submit" variant="raised" color="primary">Log In</Button>
             </div>
 
-            <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
+            <Typography component="p">
+                Don't have an account? <Link to={'/signup'}>Create one</Link>.
+            </Typography>
         </form>
     </Card>
 );
