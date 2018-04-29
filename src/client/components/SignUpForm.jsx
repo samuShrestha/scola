@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, CardText } from 'material-ui/Card';
+import Card from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-
+import Typography from 'material-ui/Typography';
 
 const SignUpForm = ({
     onSubmit,
@@ -20,40 +20,48 @@ const SignUpForm = ({
 
             <div className="field-line">
                 <TextField
-                    floatingLabelText="Name"
+                    error={errors.summary ? true : false}
+                    fullWidth
                     name="name"
-                    errorText={errors.name}
-                    onChange={onChange}
+                    placeholder="Name"
                     value={user.name}
-                />
-            </div>
-
-            <div className="field-line">
-                <TextField
-                    floatingLabelText="Email"
-                    name="email"
-                    errorText={errors.email}
+                    label={errors.name} // ERROR LABEL
                     onChange={onChange}
-                    value={user.email}
                 />
             </div>
 
             <div className="field-line">
                 <TextField
-                    floatingLabelText="Password"
+                    error={errors.summary ? true : false}
+                    fullWidth
+                    name="email"
+                    placeholder="Email"
+                    value={user.email}
+                    label={errors.email} // ERROR LABEL
+                    onChange={onChange}
+                />
+            </div>
+
+            <div className="field-line">
+                <TextField
+                    error={errors.summary ? true : false}
+                    fullWidth
                     type="password"
                     name="password"
-                    onChange={onChange}
-                    errorText={errors.password}
+                    placeholder="Password"
                     value={user.password}
+                    label={errors.password} // ERROR LABEL
+                    onChange={onChange}
                 />
             </div>
 
             <div className="button-line">
-                <Button type="submit" label="Create New Account" primary />
+                <Button type="submit" variant="raised" color="primary">Sign Up</Button>
             </div>
 
-            <CardText>Already have an account? <Link to={'/login'}>Log in</Link></CardText>
+            <Typography component="p">
+                Already have an account? <Link to={'/login'}>Log in</Link>
+            </Typography>
         </form>
     </Card>
 );

@@ -47,7 +47,7 @@ const LoginForm = ({
             </div>
 
             <div className="button-line">
-                <Button ype="submit" variant="raised" color="primary">Log In</Button>
+                <Button type="submit" variant="raised" color="primary">Log In</Button>
             </div>
 
             <Typography component="p">
